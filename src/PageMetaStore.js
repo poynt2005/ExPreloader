@@ -85,7 +85,6 @@ const PageMetaStore = (() => {
 
             for(let i = 1; i<=lookPrev; i++){
                 const pageStore = this.getPage(arrayIdx-i + 1);
-
                 if(pageStore === null){
                     if(typeof onprogress == 'function'){
                         onprogress('MetaData', arrayIdx-i + 1);
@@ -111,12 +110,16 @@ const PageMetaStore = (() => {
 
                     this.setPage(arrayIdx-i + 1, currentPageStore);
                 }
+                else {
+                    currentPageStore = pageStore;
+                }
             }
 
             currentPageStore = this.getPage(this.currentPage);
 
             for(let i = 1; i<=lookAhead; i++){
                 const pageStore = this.getPage(arrayIdx+i + 1);
+
                 if(pageStore === null){
                     if(typeof onprogress == 'function'){
                         onprogress('MetaData', arrayIdx+i + 1);
@@ -140,6 +143,9 @@ const PageMetaStore = (() => {
                         binary
                     };
                     this.setPage(arrayIdx+i + 1, currentPageStore);
+                }
+                else {
+                    currentPageStore = pageStore;
                 }
             }
 
