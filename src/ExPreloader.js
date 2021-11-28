@@ -187,6 +187,11 @@ const ExPreloader = (() => {
 
             return setInfo;
         }
+
+        get maxPage(){
+            const store = _getVal(this, 'store');
+            return store.maxPage;
+        }
     }
 })();
 

@@ -68,7 +68,8 @@ const PageMetaStore = (() => {
         async initPage(onprogress, onload, waitLoading=null){
             const arrayIdx = this.currentPage - 1;
             const lookPrev = arrayIdx >= 5 ? 5 : arrayIdx;
-            const lookAhead = (this.maxPage - 1) - 5 >= 5 ? 5 : (this.maxPage - 1) - 5;
+            //const lookAhead = (this.maxPage - 1) - 5 >= 5 ? 5 : (this.maxPage - 1) - 5;
+            const lookAhead = arrayIdx + 5 <= this.currentPage - 1 ? 5 : (this.maxPage - 1) - arrayIdx;
 
             let currentPageStore = this.getPage(this.currentPage);
 
