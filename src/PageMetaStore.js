@@ -59,6 +59,7 @@ const PageMetaStore = (() => {
             this.gid = gid;
             this.showKey = showKey;
 
+            this._preLookPage = 5;
         }
 
         updateCurrentPage(page){
@@ -67,9 +68,9 @@ const PageMetaStore = (() => {
 
         async initPage(onprogress, onload, waitLoading=null){
             const arrayIdx = this.currentPage - 1;
-            const lookPrev = arrayIdx >= 5 ? 5 : arrayIdx;
+            const lookPrev = arrayIdx >= this.preLookPage ? this.preLookPage : arrayIdx;
             //const lookAhead = (this.maxPage - 1) - 5 >= 5 ? 5 : (this.maxPage - 1) - 5;
-            const lookAhead = arrayIdx + 5 <= this.currentPage - 1 ? 5 : (this.maxPage - 1) - arrayIdx;
+            const lookAhead = arrayIdx + this.preLookPage <= this.maxPage - 1 ? this.preLookPage : (this.maxPage - 1) - arrayIdx;
 
             let currentPageStore = this.getPage(this.currentPage);
 
@@ -150,6 +151,9 @@ const PageMetaStore = (() => {
                 waitLoading();
             }
         }
+
+        set preLookPage(page){ this._preLookPage = page; }
+        get preLookPage(){ return this._preLookPage; }
 
     }
 

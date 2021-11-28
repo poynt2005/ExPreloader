@@ -192,6 +192,16 @@ const ExPreloader = (() => {
             const store = _getVal(this, 'store');
             return store.maxPage;
         }
+
+        set preLookPage(page){
+            const store = _getVal(this, 'store');
+            store.preLookPage = page;
+        }
+
+        get preLookPage(){
+            const store = _getVal(this, 'store');
+            return store.preLookPage;
+        }
     }
 })();
 
